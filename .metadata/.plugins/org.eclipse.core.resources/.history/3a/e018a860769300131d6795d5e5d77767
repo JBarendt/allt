@@ -1,0 +1,75 @@
+package mountain;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import mountain.*;
+import fractal.*;
+
+public class Mountain extends Fractal {
+	private Point m_p1, m_p2, m_p3;
+	private double m_dev;
+
+	private List<Side> m_sides;
+
+	public Mountain(double dev, Point p1, Point p2, Point p3) {
+		super();
+		m_p1 = p1;
+		m_p2 = p2;
+		m_p3 = p3;
+
+		m_dev = dev;
+		m_sides = new LinkedList<Side>();
+	}
+
+	/**
+	 * Returns the title.
+	 * @return the title
+	 */
+	public String getTitle() {
+		return "Mountain fractal";
+	}
+
+	/** Draws the fractal.
+	 * @param turtle the turtle graphic object
+	 */
+	public void draw(TurtleGraphics turtle) {
+		fractralLine(turtle, order, m_p1, m_p2, m_p3);
+	}
+
+	/**
+	 * Reursive method: Draws a recursive line of the triangle.
+	 */
+	private void fractralLine(TurtleGraphics turtle, int order, Point p1, Point p2, Point p3) {
+
+		if (order == 0) {
+			turtle.moveTo(p1.getX(), p1.getY());
+			turtle.forwardTo(p2.getX(), p2.getY());
+			turtle.forwardTo(p3.getX(), p3.getY());
+			turtle.forwardTo(p1.getX(), p1.getY());
+		} else {
+			fractralLine(turtle, order-1, p1, centerPoint(p1, p2, order), centerPoint(p1, p3, order));
+			fractralLine(turtle, order-1, p2, centerPoint(p2, p1, order), centerPoint(p2, p3, order));
+			fractralLine(turtle, order-1, p3, centerPoint(p3, p2, order), centerPoint(p3, p1, order));
+			fractralLine(turtle, order-1, centerPoint(p2, p3, order), centerPoint(p1, p2, order), centerPoint(p1, p3, order));
+		}
+	}
+
+	/*
+	 * Get center point of a line
+	 */
+	private Point centerPoint(Point p1, Point p2, int order) {
+
+		for (Side s : m_sides) {
+			if (s.getP1() == p1 && s.getP2() == p2 || s.getP1() == p2 && s.getP2() == p1) {
+				return s.getCenter();
+			}
+		}
+
+		Point p = new Point(p1.getX() + (p2.getX() - p1.getX()) / 2,
+				p1.getY() + (p2.getY() - p1.getY()) / 2 + RandomUtilities.randFunc(m_dev / Math.pow(2, order)));
+		m_sides.add(new Side(p1, p2, p));
+		return p;
+	}
+
+}
