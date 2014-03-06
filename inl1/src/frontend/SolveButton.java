@@ -7,17 +7,17 @@ import javax.swing.JButton;
 
 public class SolveButton extends JButton implements ActionListener {
 	
-	private GridPanel m_gridPanel;
-	public SolveButton(  GridPanel gridPanel) {
+	private Grid m_grid;
+	public SolveButton(  Grid grid) {
 		super( "Solve" );
 		setToolTipText( "Solve Sudoku" );
 		addActionListener( this );
 		
-		m_gridPanel = gridPanel;
+		m_grid = grid;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		m_gridPanel.Solve();
+		m_grid.Solve();
 	}
 
 }

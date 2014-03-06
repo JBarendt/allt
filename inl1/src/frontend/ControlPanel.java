@@ -11,9 +11,9 @@ public class ControlPanel extends JPanel {
 	private JButton m_clearButton;
 	private JButton m_solveButton;
 	
-	public ControlPanel( GridPanel gridPanel ){
-		m_solveButton = new SolveButton( gridPanel );
-		m_clearButton = new ClearButton( gridPanel );
+	public ControlPanel( Grid grid ){
+		m_solveButton = new SolveButton( grid );
+		m_clearButton = new ClearButton( grid );
 		
 		setLayout( new FlowLayout( FlowLayout.LEFT ));
 		add( m_clearButton );
