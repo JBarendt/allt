@@ -31,6 +31,9 @@ public class GridPanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * Clear the grid
+	 */
 	public void Clear(){
 		for(int i = 0; i < 9; i++){
 			for(int j = 0; j < 9; j++){
@@ -42,6 +45,10 @@ public class GridPanel extends JPanel{
 		m_sudoku.ResetMatrix();
 	}
 	
+	/**
+	 * First check if the numbers from the grid is in a legal placement
+	 * then solves the sudoku
+	 */
 	public void Solve() {
 		if( !m_sudoku.ReadGridValues( m_fields ) ){
 			JOptionPane.showMessageDialog(null, "Invalid input");
