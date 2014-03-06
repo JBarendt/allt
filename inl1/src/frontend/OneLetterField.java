@@ -13,32 +13,35 @@ public class OneLetterField extends JTextField {
 	 */
 	public OneLetterField() {
 		super("");
-		((AbstractDocument) this.getDocument()).setDocumentFilter(new OneLetterFilter());
+		((AbstractDocument) this.getDocument())
+				.setDocumentFilter(new OneLetterFilter());
 	}
 
-	private class OneLetterFilter extends DocumentFilter {	   	   
-		OneLetterFilter() {	    
-			super();	    
-		} 	   
+	private class OneLetterFilter extends DocumentFilter {
+		OneLetterFilter() {
+			super();
+		}
 
-		public void insertString(FilterBypass fb, int offset, String  str, AttributeSet attr) throws BadLocationException {	    
+		public void insertString(FilterBypass fb, int offset, String str,
+				AttributeSet attr) throws BadLocationException {
 			if ((fb.getDocument().getLength() + str.length()) > 1) {
 				return;
 			}
-			if (! str.isEmpty() && ! Character.isDigit(str.charAt(0))) {
+			if (!str.isEmpty() && !Character.isDigit(str.charAt(0))) {
 				return;
 			}
-			super.insertString(fb, offset, str, attr);	         
+			super.insertString(fb, offset, str, attr);
 		}
-		
-		public void replace(FilterBypass fb, int offset, int length, String  str, AttributeSet attr) throws BadLocationException {	    
+
+		public void replace(FilterBypass fb, int offset, int length,
+				String str, AttributeSet attr) throws BadLocationException {
 			if ((fb.getDocument().getLength() + str.length() - length) > 1) {
 				return;
 			}
-			if (! str.isEmpty() && ! Character.isDigit(str.charAt(0))) {
+			if (!str.isEmpty() && !Character.isDigit(str.charAt(0))) {
 				return;
 			}
-			super.replace(fb, offset, length, str, attr);	         
+			super.replace(fb, offset, length, str, attr);
 		}
 	}
 }

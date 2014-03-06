@@ -10,16 +10,16 @@ import javax.swing.JPanel;
 public class ClearButton extends JButton implements ActionListener {
 
 	private Grid m_grid;
-	
-	public ClearButton( Grid grid ){
-		super( "Clear" );
+
+	public ClearButton(Grid grid) {
+		super("Clear");
 		m_grid = grid;
-		setToolTipText( "Clear grid" );
-		addActionListener( this );
+		setToolTipText("Clear grid");
+		addActionListener(this);
 	}
-	
+
 	public void actionPerformed(ActionEvent arg0) {
 		m_grid.Clear();
 	}
-	
+
 }

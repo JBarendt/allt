@@ -9,7 +9,7 @@ public class SolveButton extends JButton implements ActionListener {
 	
 	private Grid m_grid;
 	public SolveButton(  Grid grid) {
-		super( "Solve" );
+		super("Solve" );
 		setToolTipText( "Solve Sudoku" );
 		addActionListener( this );
 		
